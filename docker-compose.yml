@@ -7,3 +7,15 @@ python:
   environment:
     PYTHONUNBUFFERED: 1
   command: python main.py
+
+# An example flask app
+flask:
+  build: ./flask
+  volumes:
+    - ./flask/src/:/app
+  working_dir: /app
+  environment:
+    PYTHONUNBUFFERED: 1
+  ports:
+    - 3000:80
+  command: python server.py
