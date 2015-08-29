@@ -1,8 +1,14 @@
+# Shared common data.
+data:
+  image: debian
+  volumes:
+    - ./data/common/:/data/common/
+
 # An example mysql resource.
 mysql:
   image: mysql
   volumes:
-    - ./db/mysql/:/var/lib/mysql/
+    - ./data/mysql/:/var/lib/mysql/
   environment:
     MYSQL_ROOT_PASSWORD: root
 
@@ -11,17 +17,21 @@ python:
   build: ./python
   volumes:
     - ./python/src/:/app
+  volumes_from:
+    - data
   working_dir: /app
   environment:
     PYTHONUNBUFFERED: 1
-  # Uncomment to link to mysql
   #links:
+  # Uncomment to link to mysql
   #  - mysql:mysql
   command: python main.py
 
 # An example flask app
 flask:
   build: ./flask
+  volumes_from:
+    - data
   volumes:
     - ./flask/src/:/app
   working_dir: /app

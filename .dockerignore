@@ -1,1 +1,2 @@
-./db/mysql
+./data/mysql
+./data/common
