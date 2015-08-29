@@ -1,0 +1,9 @@
+# An example python app
+python:
+  build: ./python
+  volumes:
+    - ./python/src/:/app
+  working_dir: /app
+  environment:
+    PYTHONUNBUFFERED: 1
+  command: python main.py

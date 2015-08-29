@@ -1,0 +1,1 @@
+A docker project template.
